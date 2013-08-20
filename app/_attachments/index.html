@@ -1,0 +1,197 @@
+<!doctype html>
+
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta keywords="" />
+		<meta description="" /> 
+		<meta name="robots" content="index, follow" />
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="cleartype" content="on">
+		<link rel="stylesheet" href="css/jquery.mobile.structure-1.3.2.min.css" />
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
+		
+		<!-- Page Title -->
+		<title>Fitness App</title>
+	</head>
+	<body>
+	<script src="js/libs/modernizr.custom.min.js"></script>
+	
+<!-- HOME-->
+	
+	<section data-role="page" id="home">
+	
+		<header data-role="header" data-position="fixed">
+			<h1>Fitness App</h1>
+		</header>
+		
+		<section data-role="content">
+			<a href="#create" id="create_exercise" data-role="button" data-theme="e">Create Exercise</a>
+			<a href="#" id="get_json"data-role="button" data-inline="true" data-theme="b">JSON</a>
+			<a href="#" id="get_xml" data-role="button" data-inline="true" data-theme="b">XML</a>
+			<a href="#" id="get_couch" data-role="button" data-inline="true" data-theme="b">Couch</a>
+			<a href="#" id="clear_ls" data-role="button" data-inline="true" data-theme="b">Clear Local Storage</a>
+			</br></br>
+			<section id="storage">
+
+			</section>
+			<section id="exlist">
+
+			</section>
+		</section>
+		
+		
+		
+		<footer data-role="footer" data-position="fixed">
+		</footer>
+		
+	</section> 
+	
+<!-- CREATE -->
+
+	<section data-role="page" id="create">
+	
+		<header data-role="header" data-position="fixed">
+			<a href="#" data-rel="back" data-icon="arrow-l" data-transition="slide" data-direction="reverse">Back</a>
+			<h1>Create Exercise</h1>
+		</header>
+		
+		<section data-role="content">
+			<form id="exeform">
+				<div data-role="fieldcontain" id="namecal">
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							 <div data-role="fieldcontain">
+								<label for="name" style="font-size:12px">Name:</label>
+								<input name="name" id="name" placeholder="Jogging" data-mini="true"></input>
+							</div>
+						</div>
+						<div class="ui-block-b">
+							<div data-role="fieldcontain">
+								<label for="burn" style="font-size:12px">Calories Burned:</label>
+								<input name="burn" id="burn" placeholder="300" value="" data-mini="true"></input>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div data-role="fieldcontain">
+					<label for="type" style="font-size:12px">Type:</label>
+					<select id="type" name="type" data-native-menu="false" data-mini="true">
+						<option value="Cardio">Cardio</option>
+						<option value="Arms">Arms</option>
+						<option value="Legs">Legs</option>
+						<option value="Core">Core</option>
+					</select>
+				</div>
+				<div data-role="fieldcontain" id="lenmea">
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							 <div data-role="fieldcontain">
+								<label for="length" style="font-size:12px">Length:</label>
+								<input name="length" id="length" placeholder="30" maxlength="3" type="number" data-mini="true"></input>
+							</div>
+						</div>
+						<div class="ui-block-b">
+							<div data-role="fieldcontain">
+								<label for="measure" style="font-size:12px">Measurement:</label>
+								<input name="measure" id="measure" placeholder="minutes" value="" type="text" data-mini="true"></input>
+							</div>
+						</div>
+					</div>
+				</div>
+				<input type="submit" value="Create!" data-theme="c" data-inline="true"/>
+				<input type="reset" value="Reset" data-theme="b" data-inline="true" data-mini="true"/>
+			</form>
+		</section>
+		
+		<footer data-role="footer" data-position="fixed">
+		
+		<h1>Footer</h1>
+		
+		</footer>
+		
+	</section> 
+
+<!-- CREDITS -->
+	
+	<section data-role="page" id="credits">
+	
+		<header data-role="header" data-position="fixed">
+			<a href="#" data-rel="back" data-icon="arrow-l" data-transition="slide" data-direction="reverse">Back</a>
+			<h1>Credits</h1>
+		</header>
+		
+		<section data-role="content">
+			<p>Developer: Brett Gear</p>
+		</section>
+		
+		<footer data-role="footer" data-position="fixed">
+			<h2>Footer</h2>
+		</footer>
+		
+	</section> 
+
+<!-- TERMS -->
+	
+	<section data-role="page" id="home">
+	
+		<header data-role="header" data-position="fixed">
+			<h1>Fitness App</h1>
+		</header>
+		
+		<section data-role="content">
+			
+			<a href="#terms" data-rel="popup" data-transition="flip">
+				<h2 style="text-align:center">Terms and Conditions</h2>
+			</a>
+			
+			<div data-role="popup" id="terms" data-position-to="window">
+				<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+				<p>This app is intended for tracking and entertainment purposes only.  It does not
+				promise or guarantee any results.  Please consult witha  physician before starting
+				any new exercise regiment.  You agree that you perform exercises in this application,
+				as well as those created by any user, at your own risk.  Any injury sustained from these
+				exercises or exercises generated by any user input is not the fault of the developers.<p>
+			</div>
+
+			<p>By selecting "I agree", you have read the <a href="#terms" data-rel="popup" data-transition="flip">
+			Terms and Conditions</a>, and agree to it's terms.</p>
+			<a data-role="button" href="#showcase">I agree</a>
+			<a data-role="button" href="#sorry">I do not agree</a>
+		</section>
+		
+		<footer data-role="footer" data-position="fixed">
+		</footer>
+	
+	</section> 
+	
+<!-- CONSTRUCTION -->
+	
+	<section data-role="page" id="sorry">
+	
+		<header data-role="header" data-position="fixed">
+			<a href="#" data-rel="back" data-icon="arrow-l" data-transition="slide" data-direction="reverse">Back</a>
+			<h1>Under Construction</h1>
+		</header>
+		
+		<section data-role="content">
+			<p>This page is Under Construction</p>
+		</section>
+		
+		<footer data-role="footer" data-position="fixed">
+			<h2>Footer</h2>
+		</footer>
+		
+	</section> 
+
+	
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<script src="js/jquery.mobile-1.3.2.min.js"></script>
+		<script src="js/libs/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+	
+</html>

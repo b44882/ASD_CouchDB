@@ -1,0 +1,39 @@
+{
+		"exercise":[
+		{
+				"name":    "Running",
+				"burn":    "300",
+				"type":    "Cardio",
+				"length":  "30",
+				"measure": "minutes"
+		},
+		{
+				"name":    "Dumbells",
+				"burn":    "333",
+				"type":    "Arms",
+				"length":  "5",
+				"measure": "reps of 6 lifts"
+		},
+		{
+				"name":    "Karate Kick",
+				"burn":    "222",
+				"type":    "Legs",
+				"length":  "100",
+				"measure": "high kicks"
+		},
+		{
+				"name":    "Crunch Ups",
+				"burn":    "111",
+				"type":    "Core",
+				"length":  "50",
+				"measure": "sit ups"
+		},
+		{
+				"name":    "Martial Arts",
+				"burn":    "444",
+				"type":    "Arms",
+				"length":  "40",
+				"measure": "minutes"
+		}
+		]
+}

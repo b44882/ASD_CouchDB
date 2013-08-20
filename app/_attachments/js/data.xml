@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fitness>
+
+    <exercise>
+        <name>Jogging</name>
+        <burned>300</burned>
+        <type>Cardio</type>
+        <length>30</length>
+        <measure>minutes</measure>
+    </exercise>
+    
+    <exercise>
+        <name>Lifting Weights</name>
+        <burned>450</burned>
+        <type>Arms</type>
+        <length>5</length>
+        <measure>reps (of 5)</measure>
+    </exercise>
+    
+    <exercise>
+        <name>High Kicks</name>
+        <burned>220</burned>
+        <type>Legs</type>
+        <length>100</length>
+        <measure>kicks</measure>
+    </exercise>
+    
+    <exercise>
+        <name>Sit Ups</name>
+        <burned>100</burned>
+        <type>Core</type>
+        <length>30</length>
+        <measure>sit ups</measure>
+    </exercise>
+    
+	<exercise>
+        <name>Boxing</name>
+        <burned>125</burned>
+        <type>Arms</type>
+        <length>30</length>
+        <measure>minutes</measure>
+    </exercise>
+    
+    
+</fitness>  
