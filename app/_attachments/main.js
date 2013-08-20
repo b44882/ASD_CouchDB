@@ -12,8 +12,10 @@ $(function(){
 					  '<li>' + "Burned: " + obj.burn + '</li>' +
 					  '<li>' + "Type: " + obj.type + '</li>' +
 					  '<li>' + "Measurement: " + obj.length + ' ' + obj.measure +'</li>' +
-					  '</ul>' +
-					  '</div>').appendTo("#storage");
+					  '<li>' +'<a href="#" class="delete_ex" data-key="'+key+'">' + 'Delete Exercise' + '</a>' + '</li>' +
+			  		  '<li>' + '<a href="#create" class="edit_ex" data-key="'+key+'">' + 'Edit Exercise' + '</a>' + '</li>' +
+			  		  '</ul>' +
+			  		  '</div>').appendTo("#storage");
 				}
 				$('#storage div').collapsible();
 	}
@@ -69,7 +71,7 @@ $(function(){
 		$("#exlist").empty();
 		$('<h1> JSON Listing </h1>').appendTo("#exlist");
 		$.ajax({
-			url: "js/data.json",
+			url: "data.json",
 			type: "GET",
 			dataType: "json",
 			success: function(data){
@@ -101,7 +103,7 @@ $(function(){
 		$("#exlist").empty();
 		$('<h1> XML Listing </h1>').appendTo("#exlist");
 		$.ajax({
-			url: "js/data.xml",
+			url: "data.xml",
 			type: "GET",
 			dataType: "xml",
 			success: function(data){
@@ -132,15 +134,15 @@ $(function(){
 		$("#exlist").empty();
 		$('<h1> Couch Listing </h1>').appendTo("#exlist");
 		$.ajax({
-			url: "_view/exercises",
+			url: '/asd_couchdb/_all_docs?include_docs=true&start_key="exercise:"&end_key="exercise:zzzz"',
 			dataType: "json",
 			success: function(data){
 				$.each(data.rows, function(index, exercise){
-					var name    = exercise.value.name;
-					    burn    = exercise.value.burn;
-					    type    = exercise.value.type;
-					    length  = exercise.value.length;
-					    measure = exercise.value.measure;
+					var name    = exercise.doc.name;
+					    burn    = exercise.doc.burn;
+					    type    = exercise.doc.type;
+					    length  = exercise.doc.length;
+					    measure = exercise.doc.measure;
 					$('<div data-role="collapsible">' +
 					  '<h2>' + name + '</h2>'+
 					  '<ul>' +
