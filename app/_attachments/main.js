@@ -160,6 +160,126 @@ $(function(){
 		});
 	});
 	
+	$("#get_couch_cardio").on("click", function(){
+		$("#exlist").empty();
+		$('<h1> Couch Listing </h1>').appendTo("#exlist");
+		$.ajax({
+			url: '/asd_couchdb/_all_docs?include_docs=true&start_key="exercise:cardio:"&end_key="exercise:cardio:zzzz"',
+			dataType: "json",
+			success: function(data){
+				$.each(data.rows, function(index, exercise){
+					var name    = exercise.doc.name;
+					    burn    = exercise.doc.burn;
+					    type    = exercise.doc.type;
+					    length  = exercise.doc.length;
+					    measure = exercise.doc.measure;
+					$('<div data-role="collapsible">' +
+					  '<h2>' + name + '</h2>'+
+					  '<ul>' +
+					  '<li>' + "Burned: " + burn + '</li>' +
+					  '<li>' + "Type: " + type + '</li>' +
+					  '<li>' + "Measurement: " + length + ' ' + measure +'</li>' +
+					  '</ul>' +
+					  '</div>').appendTo("#exlist");
+				});
+				$('#exlist div').collapsible();
+			},
+			error: function(error, perror){
+				console.log("Error:" + error + "\n" + "Parse Error: " + perror);
+			}
+		});
+	});
+	
+	$("#get_couch_arms").on("click", function(){
+		$("#exlist").empty();
+		$('<h1> Couch Listing </h1>').appendTo("#exlist");
+		$.ajax({
+			url: '/asd_couchdb/_all_docs?include_docs=true&start_key="exercise:arms:"&end_key="exercise:arms:zzzz"',
+			dataType: "json",
+			success: function(data){
+				$.each(data.rows, function(index, exercise){
+					var name    = exercise.doc.name;
+					    burn    = exercise.doc.burn;
+					    type    = exercise.doc.type;
+					    length  = exercise.doc.length;
+					    measure = exercise.doc.measure;
+					$('<div data-role="collapsible">' +
+					  '<h2>' + name + '</h2>'+
+					  '<ul>' +
+					  '<li>' + "Burned: " + burn + '</li>' +
+					  '<li>' + "Type: " + type + '</li>' +
+					  '<li>' + "Measurement: " + length + ' ' + measure +'</li>' +
+					  '</ul>' +
+					  '</div>').appendTo("#exlist");
+				});
+				$('#exlist div').collapsible();
+			},
+			error: function(error, perror){
+				console.log("Error:" + error + "\n" + "Parse Error: " + perror);
+			}
+		});
+	});
+	
+	$("#get_couch_core").on("click", function(){
+		$("#exlist").empty();
+		$('<h1> Couch Listing </h1>').appendTo("#exlist");
+		$.ajax({
+			url: '/asd_couchdb/_all_docs?include_docs=true&start_key="exercise:core:"&end_key="exercise:core:zzzz"',
+			dataType: "json",
+			success: function(data){
+				$.each(data.rows, function(index, exercise){
+					var name    = exercise.doc.name;
+					    burn    = exercise.doc.burn;
+					    type    = exercise.doc.type;
+					    length  = exercise.doc.length;
+					    measure = exercise.doc.measure;
+					$('<div data-role="collapsible">' +
+					  '<h2>' + name + '</h2>'+
+					  '<ul>' +
+					  '<li>' + "Burned: " + burn + '</li>' +
+					  '<li>' + "Type: " + type + '</li>' +
+					  '<li>' + "Measurement: " + length + ' ' + measure +'</li>' +
+					  '</ul>' +
+					  '</div>').appendTo("#exlist");
+				});
+				$('#exlist div').collapsible();
+			},
+			error: function(error, perror){
+				console.log("Error:" + error + "\n" + "Parse Error: " + perror);
+			}
+		});
+	});
+	
+	$("#get_couch_legs").on("click", function(){
+		$("#exlist").empty();
+		$('<h1> Couch Listing </h1>').appendTo("#exlist");
+		$.ajax({
+			url: '/asd_couchdb/_all_docs?include_docs=true&start_key="exercise:legs:"&end_key="exercise:legs:zzzz"',
+			dataType: "json",
+			success: function(data){
+				$.each(data.rows, function(index, exercise){
+					var name    = exercise.doc.name;
+					    burn    = exercise.doc.burn;
+					    type    = exercise.doc.type;
+					    length  = exercise.doc.length;
+					    measure = exercise.doc.measure;
+					$('<div data-role="collapsible">' +
+					  '<h2>' + name + '</h2>'+
+					  '<ul>' +
+					  '<li>' + "Burned: " + burn + '</li>' +
+					  '<li>' + "Type: " + type + '</li>' +
+					  '<li>' + "Measurement: " + length + ' ' + measure +'</li>' +
+					  '</ul>' +
+					  '</div>').appendTo("#exlist");
+				});
+				$('#exlist div').collapsible();
+			},
+			error: function(error, perror){
+				console.log("Error:" + error + "\n" + "Parse Error: " + perror);
+			}
+		});
+	});
+	
 	$("#clear_ls").on("click", function(){
 		if(localStorage.length === 0){
 			alert("There are no exercises in the database!");
