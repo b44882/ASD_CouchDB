@@ -6,14 +6,16 @@ $(function(){
 			var key = localStorage.key(i);
 				value  = localStorage.getItem(key)
 				obj = JSON.parse(value);
-			$('<li class="ui-li ui-li-static ui-btn-up-c ui-first-child ui-last-child">' +
-			  '<h3 class="ui-li-heading">' + obj.name +'</h3>' +
-			  '<p class="ui-li-desc">' + 'Calories Burned: ' + obj.burn + '</p>' +
-			  '<p class="ui-li-desc">' + 'Type: ' + obj.type + '</p>' +
-			  '<p class="ui-li-desc">' + 'Measurement: ' + obj.length + ' ' + obj.measure + '</p>' +
-			  '<a href="#" class="delete_ex" data-key="'+key+'"> Delete Exercise </a>' + ' ' +
-			  '<a href="#create" class="edit_ex" data-key="'+key+'"> Edit Exercise </a>').appendTo("#storage");
-		}
+					$('<div data-role="collapsible">' +
+					  '<h2>' + obj.name + '</h2>'+
+					  '<ul>' +
+					  '<li>' + "Burned: " + obj.burn + '</li>' +
+					  '<li>' + "Type: " + obj.type + '</li>' +
+					  '<li>' + "Measurement: " + obj.length + ' ' + obj.measure +'</li>' +
+					  '</ul>' +
+					  '</div>').appendTo("#storage");
+				}
+				$('#storage div').collapsible();
 	}
 	
 	var validate = function(key){
@@ -72,14 +74,21 @@ $(function(){
 			dataType: "json",
 			success: function(data){
 				for(var i=0, j=data.exercise.length; i<j; i++){
-					var obj = data.exercise[i];
-					$('<li class="ui-li ui-li-static ui-btn-up-c ui-first-child ui-last-child">' +
-					  '<h3 class="ui-li-heading">' + obj.name +'</h3>' +
-					  '<p class="ui-li-desc">' + 'Calories Burned: ' + obj.burn + '</p>' +
-					  '<p class="ui-li-desc">' + 'Type: ' + obj.type + '</p>' +
-					  '<p class="ui-li-desc">' + 'Measurement: ' + obj.length + ' ' + obj.measure + '</p>' +
-					  '</li>').appendTo("#exlist");
+					var name    = data.exercise[i].name;
+					    burn    = data.exercise[i].burn;
+					    type    = data.exercise[i].type;
+					    length  = data.exercise[i].length;
+					    measure = data.exercise[i].measure;
+					$('<div data-role="collapsible">' +
+					  '<h2>' + name + '</h2>'+
+					  '<ul>' +
+					  '<li>' + "Burned: " + burn + '</li>' +
+					  '<li>' + "Type: " + type + '</li>' +
+					  '<li>' + "Measurement: " + length + ' ' + measure +'</li>' +
+					  '</ul>' +
+					  '</div>').appendTo("#exlist");
 				}
+				$('#exlist div').collapsible();
 			},
 			error: function(error, perror){
 				console.log("Error:" + error + "\n" + "Parse Error: " + perror);
@@ -97,13 +106,21 @@ $(function(){
 			dataType: "xml",
 			success: function(data){
 				$(data).find("exercise").each(function() {
-					$('<li class="ui-li ui-li-static ui-btn-up-c ui-first-child ui-last-child">' +
-					  '<h3 class="ui-li-heading">' + $(this).find('name').text() +'</h3>' +
-					  '<p class="ui-li-desc">' + 'Calories Burned: ' + $(this).find('burned').text() + '</p>' +
-					  '<p class="ui-li-desc">' + 'Type: ' + $(this).find('type').text() + '</p>' +
-					  '<p class="ui-li-desc">' + 'Measurement: ' + $(this).find('length').text() + ' ' + $(this).find('measure').text() + '</p>' +
-					  '</li>').appendTo("#exlist");
+					var name    = $(this).find('name').text()
+					    burn    = $(this).find('burned').text()
+					    type    = $(this).find('type').text()
+					    length  = $(this).find('length').text()
+					    measure = $(this).find('measure').text()
+					$('<div data-role="collapsible">' +
+					  '<h2>' + name + '</h2>'+
+					  '<ul>' +
+					  '<li>' + "Burned: " + burn + '</li>' +
+					  '<li>' + "Type: " + type + '</li>' +
+					  '<li>' + "Measurement: " + length + ' ' + measure +'</li>' +
+					  '</ul>' +
+					  '</div>').appendTo("#exlist");
 				});
+				$('#exlist div').collapsible();
 			},
 			error: function(error, perror){
 				console.log("Error:" + error + "\n" + "Parse Error: " + perror);
@@ -119,18 +136,21 @@ $(function(){
 			dataType: "json",
 			success: function(data){
 				$.each(data.rows, function(index, exercise){
-					var name = exercise.value.name;
-					var burn = exercise.value.burn;
-					var type = exercise.value.type;
-					var length = exercise.value.length;
-					var measure = exercise.value.measure;
-					$('<li class="ui-li ui-li-static ui-btn-up-c ui-first-child ui-last-child">' +
-					  '<h3 class="ui-li-heading">' + name +'</h3>' +
-					  '<p class="ui-li-desc">' + 'Calories Burned: ' + burn + '</p>' +
-					  '<p class="ui-li-desc">' + 'Type: ' + type + '</p>' +
-					  '<p class="ui-li-desc">' + 'Measurement: ' + length + ' ' + measure + '</p>' +
-					  '</li>').appendTo("#exlist");
+					var name    = exercise.value.name;
+					    burn    = exercise.value.burn;
+					    type    = exercise.value.type;
+					    length  = exercise.value.length;
+					    measure = exercise.value.measure;
+					$('<div data-role="collapsible">' +
+					  '<h2>' + name + '</h2>'+
+					  '<ul>' +
+					  '<li>' + "Burned: " + burn + '</li>' +
+					  '<li>' + "Type: " + type + '</li>' +
+					  '<li>' + "Measurement: " + length + ' ' + measure +'</li>' +
+					  '</ul>' +
+					  '</div>').appendTo("#exlist");
 				});
+				$('#exlist div').collapsible();
 			},
 			error: function(error, perror){
 				console.log("Error:" + error + "\n" + "Parse Error: " + perror);
