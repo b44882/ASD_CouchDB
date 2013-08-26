@@ -32,10 +32,10 @@
 			<a href="exercise.html" id="create_exercise" data-role="button" data-theme="e">Create Exercise</a>
 			</br></br>
 			<h1>User Generated Exercises</h1>
-			<section id="storage">
+			<section id="uslist">
 
 			</section>
-			<hr>
+			<h1>Default Generated Exercises</h1>
 			<section id="exlist">
 			
 			</section>
@@ -48,70 +48,7 @@
 		
 	</section> 
 	
-<!-- CREATE -->
 
-	<section data-role="page" id="create">
-	
-		<header data-role="header" data-position="fixed">
-			<a href="#" data-rel="back" data-icon="arrow-l" data-transition="slide" data-direction="reverse">Back</a>
-			<h1>Create Exercise</h1>
-		</header>
-		
-		<section data-role="content">
-			<form id="exeform">
-				<div data-role="fieldcontain" id="namecal">
-					<div class="ui-grid-a">
-						<div class="ui-block-a">
-							 <div data-role="fieldcontain">
-								<label for="name" style="font-size:12px">Name:</label>
-								<input name="name" id="name" placeholder="Jogging" data-mini="true"></input>
-							</div>
-						</div>
-						<div class="ui-block-b">
-							<div data-role="fieldcontain">
-								<label for="burn" style="font-size:12px">Calories Burned:</label>
-								<input name="burn" id="burn" placeholder="300" value="" data-mini="true"></input>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div data-role="fieldcontain">
-					<label for="type" style="font-size:12px">Type:</label>
-					<select id="type" name="type" data-native-menu="false" data-mini="true">
-						<option value="Cardio">Cardio</option>
-						<option value="Arms">Arms</option>
-						<option value="Legs">Legs</option>
-						<option value="Core">Core</option>
-					</select>
-				</div>
-				<div data-role="fieldcontain" id="lenmea">
-					<div class="ui-grid-a">
-						<div class="ui-block-a">
-							 <div data-role="fieldcontain">
-								<label for="length" style="font-size:12px">Length:</label>
-								<input name="length" id="length" placeholder="30" maxlength="3" type="number" data-mini="true"></input>
-							</div>
-						</div>
-						<div class="ui-block-b">
-							<div data-role="fieldcontain">
-								<label for="measure" style="font-size:12px">Measurement:</label>
-								<input name="measure" id="measure" placeholder="minutes" value="" type="text" data-mini="true"></input>
-							</div>
-						</div>
-					</div>
-				</div>
-				<input type="submit" value="Create!" data-theme="c" data-inline="true"/>
-				<input type="reset" value="Reset" data-theme="b" data-inline="true" data-mini="true"/>
-			</form>
-		</section>
-		
-		<footer data-role="footer" data-position="fixed">
-		
-		<h1>Footer</h1>
-		
-		</footer>
-		
-	</section> 
 
 <!-- CREDITS -->
 	
