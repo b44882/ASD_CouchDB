@@ -1,6 +1,97 @@
-$(function(){
+/*$(function(){*/
 
-	var genList = function(){
+	$(document).on('pageinit', '#home', function(){
+		$.couch.db("asd_couchdb").view("asd_project3/exercises", {
+			success: function(data){
+			$('#exlist').empty();
+			$.each(data.rows, function(index, exercise){
+				var item = (exercise.value || exercise.doc);
+					$('<div data-role="collapsible">' +
+					  '<h2>' + item.name + '</h2>'+
+					  '<ul>' +
+					  '<li>' + "Burned: " + item.burn + '</li>' +
+					  '<li>' + "Type: " + item.type + '</li>' +
+					  '<li>' + "Measurement: " + item.length + ' ' + item.measure +'</li>' +
+					  '</ul>' +
+					  '</div>').appendTo("#exlist");
+				});
+				$('#exlist div').collapsible();
+			}
+		});
+	});
+	
+	$(document).on('pageinit', '#create', function(){
+		var validate = function(key){
+			console.log("Validate Var loaded.");
+			if(key == 0){
+				console.log("Key = 0");
+				var id = Math.floor(Math.random()*10000000001);
+			} else {
+				console.log("Loading ID " + key);
+				var id = key
+				var value = localStorage.getItem(key);
+				var obj = JSON.parse(value);
+				$('#name').val(obj.name);
+				$('#burn').val(obj.burn);
+				$('#type').val(obj.type);
+				$('#length').val(obj.length);
+				$('#measure').val(obj.measure);
+			};
+	
+			var myForm = $("#exeform");
+			console.log("Form: " + myForm);
+			
+			myForm.validate({
+				rules: {
+					name: "required",
+					burned: "required",
+					type: "required",
+					length: "required",
+					measure: "required"
+				},
+				messages: {
+					name: "",
+					burned: "",
+					type: "",
+					length: "",
+					measure: ""
+				},
+				invalidHandler: function(form, validator) {
+					alert("There are empty fields.  Please fill all fields.");
+				},
+				submitHandler: function() {
+					console.log("Submit successful.");
+					var data = myForm.serializeArray();
+					storeData(id, data);
+					$('#name').val('');
+					$('#burn').val('');
+					$('#type').val('Cardio');
+					$('#length').val('');
+					$('#measure').val('');
+					window.location = "index.html";
+				}
+			});
+		}
+	
+		var storeData = function(id, data){
+		console.log(data);
+		var exercise       = {};
+			exercise.name     = [data[0].value];
+			exercise.burn     = [data[1].value];
+			exercise.type     = [data[2].value];
+			exercise.length   = [data[3].value];
+			exercise.measure  = [data[4].value];
+			localStorage.setItem(id, JSON.stringify(exercise));
+			alert("Exercise Saved!");
+		};
+			var key = 0;
+			validate(key);
+	});
+					
+					
+
+
+	/*var genList = function(){
 		$("#storage").empty();
 		for(var i=0, j=localStorage.length; i<j; i++){
 			var key = localStorage.key(i);
@@ -326,7 +417,7 @@ $(function(){
 	};
 	
 
-});
+}); */
 
 
 
