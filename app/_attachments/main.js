@@ -1,9 +1,7 @@
-/*$(function(){*/
-
 /* HOME */
 
 $(document).on('pageinit', '#home', function(){
-
+	localStorage.clear();
     /* ENTRY TEMPLATE */
 	var entry = function(item){
 		var theEntry = $('<div data-role="collapsible">' +
@@ -14,25 +12,27 @@ $(document).on('pageinit', '#home', function(){
 				         '<li>' + "Measurement: " + item.length + ' ' + item.measure +'</li>')
 		return theEntry;
 	}
+	
+	var deleteEdit = function(item){
+		var buttonLinks = $('<li>' + '<a href="#" class="delete" data-id="'+item.id+'" data-rev="'+item.rev+'">' + 'Delete Exercise' + '</a>' + '</li>' +
+			  		        '<li>' + '<a href="exercise.html" class="edit" data-id="'+item.id+'" data-rev="'+item.rev+'">' + 'Edit Exercise' + '</a>' + '</li>')
+		return buttonLinks;
+	}
+		
 	/* DATABASE LOADED */
 	
 	$.couch.db("asd_couchdb").view("asd_project3/user", {
 		success: function(data){
 		$('#uslist').empty();
 		$.each(data.rows, function(index, exercise){
-			console.log(exercise);
 			var item = (exercise.value || exercise.doc);
-			console.log(item);
-				$("#uslist").append(
-					$(entry(item)).append(
-						$('<li>' + '<a href="#" class="delete_ex" data-key="'+exercise.key+'">' + 'Delete Exercise' + '</a>' + '</li>' +
-			  		      '<li>' + '<a href="#create" class="edit_ex" data-key="'+exercise.key+'">' + 'Edit Exercise' + '</a>' + '</li>')
-					)
-				)
-			});
+			$(deleteEdit(item)).appendTo($(entry(item)).appendTo("#uslist"))
+		});
 			$('#uslist div').collapsible();
 		}
 	});
+	
+	/* CREATE DEFAULT EXERCISES */
 	
 	$.couch.db("asd_couchdb").view("asd_project3/exercises", {
 		success: function(data){
@@ -47,19 +47,72 @@ $(document).on('pageinit', '#home', function(){
 		}
 	});
 	
-	/* CREATE BUTTON */
-	
-	$('#create_exercise').on("click", function(){
-	
+	/* DELETE BUTTON */
+		
+	$('body').on('click', '.delete', function(data){
+		var doc = {};
+			doc._id = $(this).data('id');
+			doc._rev = $(this).data('rev');
+		console.log(doc);
+		if(confirm("Are you sure you want to delete this exercise?")){
+			$.couch.db("asd_couchdb").removeDoc(doc, {
+				success: function(data) {
+					alert("The exercise has been deleted!");
+					window.location.reload();
+				}
+			});
+		}
 	});
 	
+	/*EDIT BUTTON */
+	
+	$('body').on("click", '.edit', function(){
+		localStorage.clear();
+		var doc = {};
+			doc._id = $(this).data('id');
+			doc._rev = $(this).data('rev');
+			localStorage.setItem('itemEdit', JSON.stringify(doc));
+			console.log(localStorage);
+	});
+		
+	
+	/* CREATE BUTTON */
+	
+	$('body').on("click", '.create', function(){
+	
+	});
 });
+
 
 /* CREATE */
 
 $(document).on('pageinit', '#create', function(){
-	var id = Math.floor(Math.random()*10000000001);
+	if(localStorage.length == 1){
+		var value  = localStorage.getItem("itemEdit")
+		    obj    = JSON.parse(value);
+		var doc      = {};
+			doc._id  = obj._id;
+			doc._rev = obj._rev;
+		var edit = true;
+		$.couch.db("asd_couchdb").openDoc(doc._id, {
+			success : function(data){
+				console.log(data);
+				$('#name').val(data.name);
+				$('#burn').val(data.burn);
+				$('#type').val(data.type);
+				$('#length').val(data.length);
+				$('#measure').val(data.measure);
+			localStorage.clear();	
+			}
+		});
+	} else {
+		var edit = false;
+	}
+	
+
+
 	$('#submit_exercise').on("click", function(){
+		var id = Math.floor(Math.random()*10000000001);
 		var data              = $("#exeform").serializeArray();
 		var exercise          = {};
 			exercise._id	  = "user:"+data[2].value.toLowerCase()+":"+id
@@ -68,11 +121,15 @@ $(document).on('pageinit', '#create', function(){
 			exercise.type     = [data[2].value];
 			exercise.length   = [data[3].value];
 			exercise.measure  = [data[4].value];
-			exercise.edit     = "true";
+		if (edit == true){
+			$.couch.db("asd_couchdb").removeDoc(doc, {
+				success: function(data) {
+				}
+			});	
+		};
 		$.couch.db("asd_couchdb").saveDoc(exercise, {
 			success: function(data) {
-				console.log(data);
-				alert("Exercises saved!");
+				alert("Exercise saved!");
 				window.location = "index.html";
 			},
 			error: function(status) {
@@ -81,9 +138,8 @@ $(document).on('pageinit', '#create', function(){
 		});
 	});
 });
-	
-			
-					
+
+
 
 
 	/*var genList = function(){
