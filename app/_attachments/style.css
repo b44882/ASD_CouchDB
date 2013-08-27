@@ -1,3 +1,7 @@
+.hidden{
+	display: none;
+}
+
 .quest_text{
 	font-size:12px;
 }

@@ -99,7 +99,7 @@ $(document).on('pageinit', '#create', function(){
 				console.log(data);
 				$('#name').val(data.name);
 				$('#burn').val(data.burn);
-				$('#type').val(data.type);
+				$('#type').val(data.type).change();
 				$('#length').val(data.length);
 				$('#measure').val(data.measure);
 			localStorage.clear();	
@@ -121,21 +121,26 @@ $(document).on('pageinit', '#create', function(){
 			exercise.type     = [data[2].value];
 			exercise.length   = [data[3].value];
 			exercise.measure  = [data[4].value];
-		if (edit == true){
-			$.couch.db("asd_couchdb").removeDoc(doc, {
+		if (exercise.name == '' || exercise.burn == '' || exercise.length == '' || exercise.measure == ''){
+			$('#error').removeClass('hidden');
+		} else {
+			$('#error').addClass('hidden');
+			if (edit == true){
+				$.couch.db("asd_couchdb").removeDoc(doc, {
+					success: function(data) {
+					}
+				});	
+			};
+			$.couch.db("asd_couchdb").saveDoc(exercise, {
 				success: function(data) {
+					alert("Exercise saved!");
+					window.location = "index.html";
+				},
+				error: function(status) {
+					console.log(status);
 				}
-			});	
-		};
-		$.couch.db("asd_couchdb").saveDoc(exercise, {
-			success: function(data) {
-				alert("Exercise saved!");
-				window.location = "index.html";
-			},
-			error: function(status) {
-				console.log(status);
-			}
-		});
+			});
+		}
 	});
 });
 
